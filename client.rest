@@ -26,3 +26,5 @@ Content-Type: application/json
     "recado": "Este é o NOVO recado que estou enviando"
 }
 
+###
+DELETE {{baseUrl}}/recados/1

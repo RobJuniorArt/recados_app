@@ -18,3 +18,11 @@ Content-Type: application/json
     "nova chave": "outro recado"
 }
 
+###
+PATCH {{baseUrl}}/recados/1/
+Content-Type: application/json
+
+{
+    "recado": "Este é o NOVO recado que estou enviando"
+}
+

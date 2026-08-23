@@ -7,24 +7,31 @@
 GET {{baseUrl}}/recados/?limit=10&offset=0
 
 ###
-GET {{baseUrl}}/recados/1
+GET {{baseUrl}}/recados/2
 
 ###
 POST {{baseUrl}}/recados/
 Content-Type: application/json
 
-{
-    "recado": "Este é o recado que estou enviando.",
-    "nova chave": "outro recado"
-}
+ {
+    "texto": "Novo Recado",
+    "de": "Joana",
+    "para": "João",
+    "lido": false,
+    "data": "2026-08-23T17:31:07.705Z"
+ }
 
 ###
-PATCH {{baseUrl}}/recados/1/
+PATCH {{baseUrl}}/recados/2/
 Content-Type: application/json
 
-{
-    "recado": "Este é o NOVO recado que estou enviando"
-}
+ {
+    "texto": "Atualiza Recado 2",
+    "de": "Joana",
+    "para": "João",
+    "lido": false,
+    "data": "2026-08-23T17:31:07.705Z"
+ }
 
 ###
-DELETE {{baseUrl}}/recados/1
+DELETE {{baseUrl}}/recados/2

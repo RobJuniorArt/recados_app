@@ -9,13 +9,13 @@ export class CreateRecadoDto {
 
   @IsString()
   @IsNotEmpty()
-  @MinLength(5)
+  @MinLength(2)
   @MaxLength(50)
   readonly de!: string;
 
   @IsString()
   @IsNotEmpty()
-  @MinLength(5)
+  @MinLength(2)
   @MaxLength(255)
   readonly para!: string;
 }

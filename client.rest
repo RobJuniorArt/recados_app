@@ -14,9 +14,9 @@ POST {{baseUrl}}/recados/
 Content-Type: application/json
 
  {
-    "texto": 3,
+    "texto": "4 NOVO RECADO 27/08",
     "de": "Joana",
-    "para": "João",
+    "para": "João da Silva",
     "lido": false,
     "data": "2026-08-23T17:31:07.705Z"
  }
@@ -26,11 +26,7 @@ PATCH {{baseUrl}}/recados/2/
 Content-Type: application/json
 
  {
-    "texto": "Atualiza Recado 2",
-    "de": "Joana",
-    "para": "João",
-    "lido": false,
-    "data": "2026-08-23T17:31:07.705Z"
+    "texto": "Atualiza Recado 4 27/08 ATUALIZADO"
  }
 
 ###

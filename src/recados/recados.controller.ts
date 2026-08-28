@@ -6,6 +6,7 @@ import {
   HttpCode,
   HttpStatus,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
   Query,
@@ -30,7 +31,7 @@ export class RecadosController {
 
   //encontrar todos os recados
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id') id: number) {
     return this.recadosService.findOne(id);
   }
 
@@ -41,11 +42,16 @@ export class RecadosController {
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateRecadoDto: UpdateRecadoDto) {
+    console.log(
+      updateRecadoDto.constructor.name,
+      updateRecadoDto instanceof UpdateRecadoDto,
+    );
     return this.recadosService.update(id, updateRecadoDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id', ParseIntPipe) id: number) {
+    console.log(id, typeof id);
     return this.recadosService.remove(id);
   }
 }

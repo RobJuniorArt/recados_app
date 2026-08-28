@@ -14,7 +14,7 @@ POST {{baseUrl}}/recados/
 Content-Type: application/json
 
  {
-    "texto": "4 NOVO RECADO 28/08",
+    "texto": "3 NOVO RECADO 28/08",
     "de": "Joana",
     "para": "João da Silva"
  }
@@ -28,4 +28,4 @@ Content-Type: application/json
  }
 
 ###
-DELETE {{baseUrl}}/recados/3
+DELETE {{baseUrl}}/recados/2

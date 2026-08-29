@@ -31,7 +31,7 @@ export class RecadosController {
 
   //encontrar todos os recados
   @Get(':id')
-  findOne(@Param('id') id: number) {
+  findOne(@Param('id') id: string) {
     return this.recadosService.findOne(id);
   }
 

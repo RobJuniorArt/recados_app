@@ -21,11 +21,11 @@ Content-Type: application/json
  }
 
 ###
-PATCH {{baseUrl}}/recados/2/
+PATCH {{baseUrl}}/recados/4/
 Content-Type: application/json
 
  {
-    "texto": "Atualiza Recado 4 27/08 ATUALIZADO"
+    "lido": false
  }
 
 ###

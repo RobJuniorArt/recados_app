@@ -42,11 +42,10 @@ export class RecadosController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateRecadoDto: UpdateRecadoDto) {
-    console.log(
-      updateRecadoDto.constructor.name,
-      updateRecadoDto instanceof UpdateRecadoDto,
-    );
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateRecadoDto: UpdateRecadoDto,
+  ) {
     return this.recadosService.update(id, updateRecadoDto);
   }
 

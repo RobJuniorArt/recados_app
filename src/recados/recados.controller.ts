@@ -20,18 +20,19 @@ export class RecadosController {
   constructor(private readonly recadosService: RecadosService) {}
 
   //encontrar todos os recados
-  @HttpCode(HttpStatus.NOT_FOUND)
+  @HttpCode(HttpStatus.OK)
   @Get()
-  findAll(@Query() pagination: any) {
-    //const { limit = 10, offset = 0 } = pagination;
-    //return `Essa rota retorna todos os recados. Limit: ${limit}, Offset: ${offset} `;
+  async findAll(@Query() pagination: any) {
+    const { limit = 10, offset = 0 } = pagination;
 
-    return this.recadosService.findAll();
+    //return this.recadosService.findAll();
+    const recados = await this.recadosService.findAll();
+    return recados;
   }
 
   //encontrar todos os recados
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id', ParseIntPipe) id: number) {
     return this.recadosService.findOne(id);
   }
 

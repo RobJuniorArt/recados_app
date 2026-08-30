@@ -3,8 +3,9 @@
 # RECADOS
 
 ### AppControllerGetHello
-# @name AppRecadoController
-GET {{baseUrl}}/recados/?limit=10&offset=0
+GET {{baseUrl}}/recados/
+?limit=10
+&offset=0
 
 ###
 GET {{baseUrl}}/recados/2

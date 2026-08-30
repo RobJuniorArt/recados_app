@@ -51,18 +51,15 @@ export class RecadosService {
     //throw new HttpException('Recado não encontrado', HttpStatus.NOT_FOUND);
   }
 
-  create(createRecadoDto: CreateRecadoDto) {
-    this.lastId++;
-    const id = this.lastId;
-    const newRecado = {
-      id,
+  async create(createRecadoDto: CreateRecadoDto) {
+    const novoRecado = {
       ...createRecadoDto,
       lido: false,
       data: new Date(),
     };
-    this.recados.push(newRecado);
 
-    return newRecado;
+    const recado = await this.recadoRepository.create(novoRecado);
+    return this.recadoRepository.save(novoRecado);
   }
 
   update(id: string, updateRecadoDto: UpdateRecadoDto) {
@@ -82,17 +79,11 @@ export class RecadosService {
     return this.recados[recadoExistenteIndex];
   }
 
-  remove(id: number) {
-    const recadoExistenteIndex = this.recados.findIndex(
-      (item) => item.id === +id,
-    );
-    if (recadoExistenteIndex < 0) {
-      this.throwNotFoundError();
-    }
+  async remove(id: number) {
+    const recado = await this.recadoRepository.findOneBy({ id });
 
-    if (recadoExistenteIndex >= 0) {
-      const recado = this.recados.splice(recadoExistenteIndex, 1);
-      return recado;
-    }
+    if (!recado) return this.throwNotFoundError();
+
+    return this.recadoRepository.remove(recado);
   }
 }

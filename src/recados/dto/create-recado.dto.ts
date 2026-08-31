@@ -24,7 +24,4 @@ export class CreateRecadoDto {
   @MinLength(2)
   @MaxLength(255)
   readonly para!: string;
-
-  @IsBoolean()
-  readonly lido!: boolean;
 }

@@ -17,7 +17,7 @@ Content-Type: application/json
  {
     "texto": "NOVO RECADO 4",
     "de": "Joana",
-    "para": "João da Silva"
+    "para": "João da Silva",
  }
 
 ###
@@ -25,7 +25,7 @@ PATCH {{baseUrl}}/recados/4/
 Content-Type: application/json
 
  {
-    "lido": false
+    "lido": true
  }
 
 ###

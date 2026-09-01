@@ -58,6 +58,10 @@ Content-Type: application/json
 
  {
     "name": "João da Silva",
-    "email": "joao.ds@email.com",
+    "email": "joao.ds2@email.com",
     "password": "123456"
  }
+
+
+###
+DELETE {{baseUrl}}/pessoas/5

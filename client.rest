@@ -30,3 +30,34 @@ Content-Type: application/json
 
 ###
 DELETE {{baseUrl}}/recados/2
+
+
+
+
+
+
+#################################################################################################
+
+
+
+
+
+# PESSOAS
+
+### lista todas as pessoas
+GET {{baseUrl}}/pessoas/
+?limit=10
+&offset=0
+
+###
+GET {{baseUrl}}/pessoas/2
+
+###
+POST {{baseUrl}}/pessoas/
+Content-Type: application/json
+
+ {
+    "name": "João da Silva",
+    "email": "joao.ds@email.com",
+    "password": "123456"
+ }

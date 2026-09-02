@@ -62,6 +62,14 @@ Content-Type: application/json
     "password": "123456"
  }
 
+###
+PATCH {{baseUrl}}/pessoas/6/
+Content-Type: application/json
+
+ {
+    "name": "Josival",
+    "password": "654321"
+ }
 
 ###
 DELETE {{baseUrl}}/pessoas/5

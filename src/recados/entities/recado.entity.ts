@@ -30,12 +30,12 @@ export class Recado {
   updatedAt?: Date;
 
   //emissor
-  @ManyToOne(() => Pessoa)
+  @ManyToOne(() => Pessoa, { onDelete: 'CASCADE', onUpdate: 'CASCADE' })
   @JoinColumn({ name: 'de' })
   de!: Pessoa;
 
   //destinatario
-  @ManyToOne(() => Pessoa)
+  @ManyToOne(() => Pessoa, { onDelete: 'CASCADE', onUpdate: 'CASCADE' })
   @JoinColumn({ name: 'para' })
   para!: Pessoa;
 }

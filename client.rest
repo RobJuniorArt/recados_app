@@ -8,16 +8,16 @@ GET {{baseUrl}}/recados/
 &offset=0
 
 ###
-GET {{baseUrl}}/recados/2
+GET {{baseUrl}}/recados/12
 
 ###
 POST {{baseUrl}}/recados/
 Content-Type: application/json
 
  {
-    "texto": "NOVO RECADO 4",
-    "de": "Joana",
-    "para": "João da Silva",
+    "texto": "NOVO RECADO",
+    "deId": 7,
+    "paraId": 9
  }
 
 ###
@@ -57,8 +57,8 @@ POST {{baseUrl}}/pessoas/
 Content-Type: application/json
 
  {
-    "name": "João da Silva",
-    "email": "joao.ds2@email.com",
+    "name": "Roberto Esteves",
+    "email": "betoesteves@email.com",
     "password": "123456"
  }
 

@@ -25,6 +25,7 @@ PATCH {{baseUrl}}/recados/4/
 Content-Type: application/json
 
  {
+    "texto": "Teste mudança de texto do recado",
     "lido": true
  }
 

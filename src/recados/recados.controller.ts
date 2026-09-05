@@ -16,15 +16,16 @@ import { CreateRecadoDto } from './dto/create-recado.dto';
 import { UpdateRecadoDto } from './dto/update-recado.dto';
 import { paginationDto } from 'src/common/dto/pagination.dto';
 import { AddHeaderInterceptor } from 'src/common/interceptors/add-header.interceptor';
+import { TimmingConnectionInterceptor } from 'src/common/interceptors/timing-connection.interceptor';
 
 @Controller('recados')
 export class RecadosController {
   constructor(private readonly recadosService: RecadosService) {}
 
   //encontrar todos os recados
+  @UseInterceptors(TimmingConnectionInterceptor)
   @HttpCode(HttpStatus.OK)
   @Get()
-  @UseInterceptors(AddHeaderInterceptor)
   async findAll(@Query() paginationDto: paginationDto) {
     //return this.recadosService.findAll();
     const recados = await this.recadosService.findAll(paginationDto);
@@ -33,6 +34,7 @@ export class RecadosController {
 
   //encontrar todos os recados
   @Get(':id')
+  @UseInterceptors(AddHeaderInterceptor)
   findOne(@Param('id') id: string) {
     return this.recadosService.findOne(+id);
   }

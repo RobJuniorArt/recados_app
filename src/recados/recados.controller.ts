@@ -9,14 +9,11 @@ import {
   Patch,
   Post,
   Query,
-  UseInterceptors,
 } from '@nestjs/common';
 import { RecadosService } from './recados.service';
 import { CreateRecadoDto } from './dto/create-recado.dto';
 import { UpdateRecadoDto } from './dto/update-recado.dto';
 import { paginationDto } from 'src/common/dto/pagination.dto';
-import { AddHeaderInterceptor } from 'src/common/interceptors/add-header.interceptor';
-import { ErrorHandlingInterceptor } from 'src/common/interceptors/error-handling.interceptor';
 
 @Controller('recados')
 export class RecadosController {
@@ -33,7 +30,6 @@ export class RecadosController {
 
   //encontrar todos os recados
   @Get(':id')
-  @UseInterceptors(AddHeaderInterceptor, ErrorHandlingInterceptor)
   findOne(@Param('id') id: string) {
     return this.recadosService.findOne(+id);
   }
@@ -50,7 +46,7 @@ export class RecadosController {
 
   @Delete(':id')
   remove(@Param('id') id: number) {
-    console.log(id, typeof id);
+    // console.log(id, typeof id);
     return this.recadosService.remove(id);
   }
 }

@@ -8,7 +8,7 @@ GET {{baseUrl}}/recados/
 &offset=0
 
 ###
-GET {{baseUrl}}/recados/12
+GET {{baseUrl}}/recados/58
 
 ###
 POST {{baseUrl}}/recados/

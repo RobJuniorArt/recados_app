@@ -12,7 +12,6 @@ export class TimmingConnectionInterceptor implements NestInterceptor {
     const startTime = Date.now();
     console.log('TimmingConnectionInterceptor executado antes');
 
-    await new Promise((resolve) => setTimeout(resolve, 3000));
     return next.handle().pipe(
       tap(() => {
         const finalTime = Date.now();

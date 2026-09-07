@@ -6,9 +6,10 @@
 GET {{baseUrl}}/recados/
 ?limit=10
 &offset=0
+Authorization: Bearer AquiSimVemOToken
 
 ###
-GET {{baseUrl}}/recados/58
+GET {{baseUrl}}/recados/10
 
 ###
 POST {{baseUrl}}/recados/

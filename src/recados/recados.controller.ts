@@ -9,6 +9,7 @@ import {
   Patch,
   Post,
   Query,
+  Req,
   UseInterceptors,
 } from '@nestjs/common';
 import { RecadosService } from './recados.service';
@@ -16,6 +17,7 @@ import { CreateRecadoDto } from './dto/create-recado.dto';
 import { UpdateRecadoDto } from './dto/update-recado.dto';
 import { paginationDto } from 'src/common/dto/pagination.dto';
 import { AuthTokenInterceptor } from 'src/common/interceptors/auth-token.interceptor';
+import type { Request } from 'express';
 
 @Controller('recados')
 export class RecadosController {
@@ -25,7 +27,8 @@ export class RecadosController {
   @UseInterceptors(AuthTokenInterceptor)
   @HttpCode(HttpStatus.OK)
   @Get()
-  async findAll(@Query() paginationDto: paginationDto) {
+  async findAll(@Query() paginationDto: paginationDto, @Req() req: Request) {
+    console.log(req['user']);
     //return this.recadosService.findAll();
     const recados = await this.recadosService.findAll(paginationDto);
     return recados;

@@ -7,13 +7,12 @@ import {
   Patch,
   Post,
   Query,
-  Req,
-  UseGuards,
 } from '@nestjs/common';
 import { RecadosService } from './recados.service';
 import { CreateRecadoDto } from './dto/create-recado.dto';
 import { UpdateRecadoDto } from './dto/update-recado.dto';
 import { paginationDto } from 'src/common/dto/pagination.dto';
+import { ReqDataParam } from 'src/common/params/req-data-param.decorator';
 
 @Controller('recados')
 export class RecadosController {
@@ -23,7 +22,6 @@ export class RecadosController {
   @Get()
   async findAll(@Query() paginationDto: paginationDto) {
     const recados = await this.recadosService.findAll(paginationDto);
-
     return recados;
   }
 

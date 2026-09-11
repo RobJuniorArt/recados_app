@@ -1,17 +1,14 @@
 import {
-  BadRequestException,
   Body,
   Controller,
   Delete,
   Get,
-  HttpCode,
-  HttpStatus,
   Param,
   Patch,
   Post,
   Query,
   Req,
-  UseInterceptors,
+  UseGuards,
 } from '@nestjs/common';
 import { RecadosService } from './recados.service';
 import { CreateRecadoDto } from './dto/create-recado.dto';
@@ -19,21 +16,19 @@ import { UpdateRecadoDto } from './dto/update-recado.dto';
 import { paginationDto } from 'src/common/dto/pagination.dto';
 import { AuthTokenInterceptor } from 'src/common/interceptors/auth-token.interceptor';
 import type { Request } from 'express';
+import { IsAdminGuard } from 'src/common/guards/is-admin.guard';
 
 @Controller('recados')
 export class RecadosController {
   constructor(private readonly recadosService: RecadosService) {}
 
   //encontrar todos os recados
-  @UseInterceptors(AuthTokenInterceptor)
-  @HttpCode(HttpStatus.OK)
+  @UseGuards(IsAdminGuard)
   @Get()
   async findAll(@Query() paginationDto: paginationDto, @Req() req: Request) {
-    console.log(req['user']);
-    //return this.recadosService.findAll();
     const recados = await this.recadosService.findAll(paginationDto);
-    throw new BadRequestException('interno server errado kkk');
-    //return recados;
+
+    return recados;
   }
 
   //encontrar todos os recados

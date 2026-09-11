@@ -14,18 +14,14 @@ import { RecadosService } from './recados.service';
 import { CreateRecadoDto } from './dto/create-recado.dto';
 import { UpdateRecadoDto } from './dto/update-recado.dto';
 import { paginationDto } from 'src/common/dto/pagination.dto';
-import { AuthTokenInterceptor } from 'src/common/interceptors/auth-token.interceptor';
-import type { Request } from 'express';
-import { IsAdminGuard } from 'src/common/guards/is-admin.guard';
 
 @Controller('recados')
 export class RecadosController {
   constructor(private readonly recadosService: RecadosService) {}
 
   //encontrar todos os recados
-  @UseGuards(IsAdminGuard)
   @Get()
-  async findAll(@Query() paginationDto: paginationDto, @Req() req: Request) {
+  async findAll(@Query() paginationDto: paginationDto) {
     const recados = await this.recadosService.findAll(paginationDto);
 
     return recados;

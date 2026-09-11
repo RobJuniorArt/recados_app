@@ -52,7 +52,7 @@ GET {{baseUrl}}/pessoas/
 &offset=0
 
 ###
-GET {{baseUrl}}/pessoas/2
+GET {{baseUrl}}/pessoas/9
 
 ###
 POST {{baseUrl}}/pessoas/
@@ -60,18 +60,18 @@ Content-Type: application/json
 
  {
     "name": "Roberto Esteves",
-    "email": "betoesteves@email.com",
+    "email": "betoesteves2@email.com",
     "password": "123456"
  }
 
 ###
-PATCH {{baseUrl}}/pessoas/6/
+PATCH {{baseUrl}}/pessoas/12/
 Content-Type: application/json
 
  {
-    "name": "Josival",
+    "name": "Josival esteves",
     "password": "654321"
  }
 
 ###
-DELETE {{baseUrl}}/pessoas/5
+DELETE {{baseUrl}}/pessoas/12

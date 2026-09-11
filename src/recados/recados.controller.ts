@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Delete,
@@ -31,7 +32,8 @@ export class RecadosController {
     console.log(req['user']);
     //return this.recadosService.findAll();
     const recados = await this.recadosService.findAll(paginationDto);
-    return recados;
+    throw new BadRequestException('interno server errado kkk');
+    //return recados;
   }
 
   //encontrar todos os recados

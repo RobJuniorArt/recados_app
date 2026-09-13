@@ -8,7 +8,6 @@ import { UpdatePessoaDto } from './dto/update-pessoa.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Pessoa } from './entities/pessoa.entity';
 import { Repository } from 'typeorm';
-import { takeWhile } from 'rxjs';
 
 @Injectable()
 export class PessoasService {

@@ -12,11 +12,15 @@ import { paginationDto } from 'src/common/dto/pagination.dto';
 
 @Injectable({ scope: Scope.DEFAULT }) // O PROVIDER EM QUESTAO É UM SINGLETON
 export class RecadosService {
+  private count = 0;
   constructor(
     @InjectRepository(Recado)
     private readonly recadoRepository: Repository<Recado>,
     private readonly pessoaService: PessoasService,
-  ) {}
+  ) {
+    this.count++;
+    console.log(`RecadoService foi logado: ${this.count} vezes`);
+  }
 
   throwNotFoundError() {
     throw new NotFoundException('Recado nao encontrado');

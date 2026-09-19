@@ -7,20 +7,13 @@ import { Repository } from 'typeorm';
 import { PessoasService } from 'src/pessoas/pessoas.service';
 import { paginationDto } from 'src/common/dto/pagination.dto';
 
-// @Injectable({ scope: Scope.REQUEST }) // O PROVIDER EM QUESTAO É UM SINGLETON é instanciado a cada requisição
-// @Injectable({ scope: Scope.TRANSIENT }) // O PROVIDER EM QUESTAO É UM SINGLETON é criada uma instancia do provider para cada classe que injetar este provider
-
 @Injectable({ scope: Scope.DEFAULT }) // O PROVIDER EM QUESTAO É UM SINGLETON
 export class RecadosService {
-  private count = 0;
   constructor(
     @InjectRepository(Recado)
     private readonly recadoRepository: Repository<Recado>,
     private readonly pessoaService: PessoasService,
-  ) {
-    this.count++;
-    console.log(`RecadoService foi logado: ${this.count} vezes`);
-  }
+  ) {}
 
   throwNotFoundError() {
     throw new NotFoundException('Recado nao encontrado');
@@ -53,7 +46,6 @@ export class RecadosService {
   }
 
   async findOne(id: number) {
-    //const recado = this.recados.find((item) => item.id === +id);
     const recado = await this.recadoRepository.findOne({
       where: {
         id,

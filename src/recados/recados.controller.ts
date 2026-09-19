@@ -14,41 +14,40 @@ import { CreateRecadoDto } from './dto/create-recado.dto';
 import { UpdateRecadoDto } from './dto/update-recado.dto';
 import { paginationDto } from 'src/common/dto/pagination.dto';
 import { RecadosUtils } from './recados.utils';
+import { RemoveSpacesRegex } from 'src/common/regex/remove-spaces.regex';
 import {
   ONLY_LOWERCASE_LETTERS_REGEX,
   REMOVE_SPACE_REGEX,
-  SERVER_NAME,
-} from 'src/recados/recados.constante';
-import * as regexProtocolRegex from 'src/common/regex/regex-protocol.regex';
+} from './recados.constante';
+import { OnlyLowerCaseLettersRegex } from 'src/common/regex/only-lowercase-letters.regex';
 
 @Controller('recados')
 export class RecadosController {
   constructor(
     private readonly recadosService: RecadosService,
     private readonly recadosUtils: RecadosUtils,
-    @Inject(SERVER_NAME)
-    private readonly serverName: string,
     @Inject(REMOVE_SPACE_REGEX)
-    private readonly removeSpacesRegex: regexProtocolRegex.RegexProtocol,
+    private readonly removeSpacesRegex: RemoveSpacesRegex,
     @Inject(ONLY_LOWERCASE_LETTERS_REGEX)
-    private readonly onlyLowerCaseLettersRegex: regexProtocolRegex.RegexProtocol,
+    private readonly onlyLowerCaseLettersRegex: OnlyLowerCaseLettersRegex,
   ) {}
 
   //encontrar todos os recados
   @Get()
   async findAll(@Query() paginationDto: paginationDto) {
-    console.log(this.serverName);
-    console.log(this.removeSpacesRegex.execute(this.serverName));
-    console.log(this.onlyLowerCaseLettersRegex.execute(this.serverName));
+    console.log(
+      this.removeSpacesRegex.execute(' R e m o v e / o s / e s p a ç o s '),
+    );
+    console.log(
+      this.onlyLowerCaseLettersRegex.execute('AQUI VEMOS letras minusculas'),
+    );
     const recados = await this.recadosService.findAll(paginationDto);
     return recados;
   }
 
-  //encontrar todos os recados
+  //encontrar um recado
   @Get(':id')
   findOne(@Param('id') id: string) {
-    console.log(this.recadosUtils.inverteString('Robson'));
-
     return this.recadosService.findOne(+id);
   }
 
@@ -64,7 +63,6 @@ export class RecadosController {
 
   @Delete(':id')
   remove(@Param('id') id: number) {
-    // console.log(id, typeof id);
     return this.recadosService.remove(id);
   }
 }

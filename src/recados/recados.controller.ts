@@ -3,7 +3,6 @@ import {
   Controller,
   Delete,
   Get,
-  Inject,
   Param,
   Patch,
   Post,
@@ -13,18 +12,10 @@ import { RecadosService } from './recados.service';
 import { CreateRecadoDto } from './dto/create-recado.dto';
 import { UpdateRecadoDto } from './dto/update-recado.dto';
 import { paginationDto } from 'src/common/dto/pagination.dto';
-import { MY_DYNAMIC_CONFIG } from 'src/my-dynamic/my-dinamic.module';
-import type { MyDynamicModuleConfigs } from 'src/my-dynamic/my-dinamic.module';
 
 @Controller('recados')
 export class RecadosController {
-  constructor(
-    private readonly recadosService: RecadosService,
-    @Inject(MY_DYNAMIC_CONFIG)
-    private readonly myDynamicConfigs: MyDynamicModuleConfigs,
-  ) {
-    console.log(myDynamicConfigs);
-  }
+  constructor(private readonly recadosService: RecadosService) {}
 
   //encontrar todos os recados
   @Get()

@@ -12,7 +12,7 @@ import { PessoasService } from './pessoas.service';
 import { CreatePessoaDto } from './dto/create-pessoa.dto';
 import { UpdatePessoaDto } from './dto/update-pessoa.dto';
 import { RecadosUtils } from 'src/recados/recados.utils';
-import { SERVER_NAME } from 'src/constants/server-name.constante';
+import { SERVER_NAME } from 'src/recados/recados.constante';
 
 @Controller('pessoas')
 export class PessoasController {

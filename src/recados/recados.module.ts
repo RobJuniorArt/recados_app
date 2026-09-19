@@ -31,7 +31,10 @@ import {
     },
     {
       provide: ONLY_LOWERCASE_LETTERS_REGEX, // Token
-      useFactory: (regexFactory: RegexFactory) => {
+      useFactory: async (regexFactory: RegexFactory) => {
+        //espera algo acontecer
+        await new Promise((resolve) => setTimeout(resolve, 3000));
+
         //posso ter lógica aqui
         return regexFactory.create('OnlyLowerCaseLettersRegex');
       }, // factory

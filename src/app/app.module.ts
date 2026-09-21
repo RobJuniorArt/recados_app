@@ -8,7 +8,10 @@ import { PessoasModule } from 'src/pessoas/pessoas.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      // envFilePath: ['env/.env'],
+      // ignoreEnvFile: false,
+    }),
     ConfigModule.forRoot({
       isGlobal: true,
     }),

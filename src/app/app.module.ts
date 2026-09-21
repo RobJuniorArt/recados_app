@@ -5,12 +5,16 @@ import { RecadosModule } from '../recados/recados.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { PessoasModule } from 'src/pessoas/pessoas.module';
+import * as Joi from '@hapi/joi';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       // envFilePath: ['env/.env'],
       // ignoreEnvFile: false,
+      // validationSchema: Joi.object({
+      //   //DB_TYPE: Joi.required(),
+      // }) as any,
     }),
     ConfigModule.forRoot({
       isGlobal: true,

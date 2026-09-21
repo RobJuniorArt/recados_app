@@ -15,6 +15,7 @@ import * as Joi from '@hapi/joi';
       // validationSchema: Joi.object({
       //   //DB_TYPE: Joi.required(),
       // }) as any,
+      
     }),
     ConfigModule.forRoot({
       isGlobal: true,

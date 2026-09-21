@@ -6,6 +6,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { PessoasService } from 'src/pessoas/pessoas.service';
 import { paginationDto } from 'src/common/dto/pagination.dto';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable({ scope: Scope.DEFAULT }) // O PROVIDER EM QUESTAO É UM SINGLETON
 export class RecadosService {
@@ -13,7 +14,13 @@ export class RecadosService {
     @InjectRepository(Recado)
     private readonly recadoRepository: Repository<Recado>,
     private readonly pessoaService: PessoasService,
-  ) {}
+    private readonly configService: ConfigService, //posso passar a tipagem aqui tbm, n faz nada real facilita o desenvolvimento
+  ) {
+    // const databaseUserName = this.configService.get('DB_USERNAME');
+    // console.log(databaseUserName);
+    const databaseUserName = this.configService.get<string>('DB_USERNAME'); //posso inferir o tipo aqui
+    console.log(databaseUserName);
+  }
 
   throwNotFoundError() {
     throw new NotFoundException('Recado nao encontrado');

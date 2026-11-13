@@ -54,13 +54,13 @@ GET {{baseUrl}}/pessoas/
 ###
 GET {{baseUrl}}/pessoas/9
 
-###
+### Cria uma pessoa
 POST {{baseUrl}}/pessoas/
 Content-Type: application/json
 
  {
-    "name": "Roberto Esteves",
-    "email": "betoesteves2@email.com",
+    "name": "Leo",
+    "email": "Leo3@email.com",
     "password": "123456"
  }
 

@@ -25,7 +25,7 @@ export class PessoasService {
       );
       const dadosPessoa = {
         name: createPessoaDto.name,
-        passwordHash: createPessoaDto.password,
+        passwordHash,
         email: createPessoaDto.email,
       };
 

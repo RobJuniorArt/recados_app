@@ -8,12 +8,12 @@ import {
 
 export class CreatePessoaDto {
   @IsEmail()
-  email!: string;
+  email!: string; //email sera usuario
 
   @IsString()
   @IsNotEmpty()
   @MinLength(5)
-  password!: string;
+  password!: string; //sera convertida em hashing
 
   @IsString()
   @IsNotEmpty()

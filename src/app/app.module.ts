@@ -6,6 +6,8 @@ import { ConfigModule, ConfigType } from '@nestjs/config';
 import { PessoasModule } from 'src/pessoas/pessoas.module';
 import appConfig from './app.config';
 import { RecadosModule } from 'src/recados/recados.module';
+import { GlobalConfigModule } from 'src/global-config/global-config.module';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
   imports: [
@@ -39,6 +41,8 @@ import { RecadosModule } from 'src/recados/recados.module';
     }),
     RecadosModule,
     PessoasModule,
+    GlobalConfigModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

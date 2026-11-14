@@ -6,6 +6,6 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
   @Post()
   login() {
-    return true;
+    return this.authService.login();
   }
 }

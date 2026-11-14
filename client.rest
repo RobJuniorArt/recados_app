@@ -75,3 +75,20 @@ Content-Type: application/json
 
 ###
 DELETE {{baseUrl}}/pessoas/12
+
+
+
+
+
+
+
+#################################################################################################
+
+
+
+
+
+# AUTH
+
+### lista todas as pessoas
+POST {{baseUrl}}/auth/

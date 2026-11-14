@@ -63,8 +63,14 @@ export class PessoasService {
   async update(id: number, updatePessoaDto: UpdatePessoaDto) {
     const dadosPessoa = {
       name: updatePessoaDto.name,
-      passwordHash: updatePessoaDto.password,
     };
+
+    if (updatePessoaDto?.password) {
+      const passwordHash = await this.hashingService.hash(
+        updatePessoaDto.password,
+      );
+      dadosPessoa['passwordHash'] = passwordHash;
+    }
     const pessoa = await this.pessoaRepository.preload({
       id,
       ...dadosPessoa,

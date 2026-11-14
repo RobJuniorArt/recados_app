@@ -92,3 +92,8 @@ DELETE {{baseUrl}}/pessoas/12
 
 ### lista todas as pessoas
 POST {{baseUrl}}/auth/
+Content-Type: application/json
+{
+   "email": "rob@gmail.com",
+   "password": "123456"
+}

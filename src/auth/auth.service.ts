@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { LoginDto } from './dto/login.dto';
 import { Repository } from 'typeorm';
 import { Pessoa } from 'src/pessoas/entities/pessoa.entity';
@@ -20,6 +20,7 @@ export class AuthService {
     const pessoa = await this.pessoaRepository.findOneBy({
       email: LoginDto.email,
     });
+
     if (pessoa) {
       passwordIsValid = await this.hashingService.compare(
         LoginDto.password,
@@ -27,7 +28,13 @@ export class AuthService {
       );
     }
 
-    
+    if (passwordIsValid) {
+      throwError = false;
+    }
+
+    if (throwError) {
+      throw new UnauthorizedException('Usuário ou senha inválidos');
+    }
 
     return LoginDto;
   }

@@ -36,6 +36,8 @@ export class AuthService {
       throw new UnauthorizedException('Usuário ou senha inválidos');
     }
 
-    return LoginDto;
+    //token novo e entregar para resposta
+
+    return { message: 'Usuário logado!' };
   }
 }

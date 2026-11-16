@@ -11,7 +11,7 @@ export const MY_DYNAMIC_CONFIG = 'MY_DYNAMIC_CONFIG';
 export class MyDynamicModule {
   static register(configs: MyDynamicModuleConfigs): DynamicModule {
     // aqui posso ter logica e usar minhas configs
-    console.log(configs);
+    //console.log(configs);
     return {
       module: MyDynamicModule,
       imports: [],

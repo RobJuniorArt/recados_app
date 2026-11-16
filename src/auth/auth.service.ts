@@ -5,6 +5,7 @@ import { Pessoa } from 'src/pessoas/entities/pessoa.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { HashingService } from './hashing/hashing.service';
 import jwtConfig from './config/jwt.config';
+import type { ConfigType } from '@nestjs/config';
 
 @Injectable()
 export class AuthService {
@@ -13,8 +14,10 @@ export class AuthService {
     private readonly pessoaRepository: Repository<Pessoa>,
     private readonly hashingService: HashingService,
     @Inject(jwtConfig.KEY)
-    
-  ) {}
+    private readonly jwtConfiguration: ConfigType<typeof jwtConfig>,
+  ) {
+    console.log(jwtConfiguration);
+  }
 
   async login(LoginDto: LoginDto) {
     let passwordIsValid = false;

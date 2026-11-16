@@ -19,7 +19,7 @@ export class RecadosService {
     // const databaseUserName = this.configService.get('DB_USERNAME');
     // console.log(databaseUserName);
     const databaseUserName = this.configService.get<string>('DB_USERNAME'); //posso inferir o tipo aqui
-    console.log(databaseUserName);
+    //console.log(databaseUserName); trazendo undefined no console.
   }
 
   throwNotFoundError() {

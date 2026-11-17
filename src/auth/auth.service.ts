@@ -44,8 +44,19 @@ export class AuthService {
       throw new UnauthorizedException('Usuário ou senha inválidos');
     }
 
-    //token novo e entregar para resposta
+    const accessToken = await this.jwtService.signAsync(
+      {
+        sub: pessoa?.id,
+        email: pessoa?.email,
+      },
+      {
+        audience: this.jwtConfiguration.audience,
+        issuer: this.jwtConfiguration.issuer,
+        secret: this.jwtConfiguration.secret,
+        expiresIn: this.jwtConfiguration.jwtTtl,
+      },
+    );
 
-    return { message: 'Usuário logado!' };
+    return { accessToken };
   }
 }

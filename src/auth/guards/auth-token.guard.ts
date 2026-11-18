@@ -7,13 +7,16 @@ export class AuthTokenGuard implements CanActivate {
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
-    throw new Error('Method not implemented.');
+    const request: Request = context.switchToHttp().getRequest();
+    const token = this.extractTokenFromHeader(request);
   }
   extractTokenFromHeader(request: Request): string | undefined {
     const authorization = request.get('authorization');
 
     if (!authorization || typeof authorization !== 'string') {
-      return undefined;
+      return;
     }
+
+    return authorization.split(' ')[1];
   }
 }

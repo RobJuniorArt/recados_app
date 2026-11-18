@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   UseGuards,
+  Req,
 } from '@nestjs/common';
 import { PessoasService } from './pessoas.service';
 import { CreatePessoaDto } from './dto/create-pessoa.dto';
@@ -24,7 +25,7 @@ export class PessoasController {
   }
 
   @Get()
-  findAll() {
+  findAll(@Req() req: Request) {
     return this.pessoasService.findAll();
   }
 

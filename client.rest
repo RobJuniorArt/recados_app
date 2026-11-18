@@ -50,7 +50,7 @@ DELETE {{baseUrl}}/recados/2
 GET {{baseUrl}}/pessoas/
 ?limit=10
 &offset=0
-Authorization: Bearer 1234
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE3LCJlbWFpbCI6Imx1aXpAZW1haWwuY29tIiwiaWF0IjoxNzk1MDA0Mjg5LCJleHAiOjE3OTUwMDc4ODksImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMCIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMCJ9.x9jVady7tN4FJC5cQ121snKnUKgxNH7T0tM0B7rzecs
 
 ###
 GET {{baseUrl}}/pessoas/9

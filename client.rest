@@ -50,6 +50,7 @@ DELETE {{baseUrl}}/recados/2
 GET {{baseUrl}}/pessoas/
 ?limit=10
 &offset=0
+Authorization: Bearer 1234
 
 ###
 GET {{baseUrl}}/pessoas/9

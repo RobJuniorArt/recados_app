@@ -9,6 +9,7 @@ import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
 import jwtConfig from '../config/jwt.config';
 import * as config from '@nestjs/config';
+import { REQUEST_TOKEN_PAYLOAD_KEY } from '../auth.constants';
 
 @Injectable()
 export class AuthTokenGuard implements CanActivate {
@@ -31,7 +32,7 @@ export class AuthTokenGuard implements CanActivate {
         token,
         this.jwtConfiguration,
       );
-      console.log(payload);
+      request[REQUEST_TOKEN_PAYLOAD_KEY] = payload;
     } catch (e) {
       console.log(e);
       throw new UnauthorizedException('Falha ao logar!');
@@ -48,5 +49,4 @@ export class AuthTokenGuard implements CanActivate {
 
     return authorization.split(' ')[1];
   }
-  
 }

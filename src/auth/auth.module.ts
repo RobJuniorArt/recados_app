@@ -7,7 +7,7 @@ import { Pessoa } from 'src/pessoas/entities/pessoa.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import jwtConfig from './config/jwt.config';
-import { JwtModule } from '@nestjs/jwt';
+import { JwtModule, JwtService } from '@nestjs/jwt';
 
 @Global()
 @Module({
@@ -24,6 +24,6 @@ import { JwtModule } from '@nestjs/jwt';
     },
     AuthService,
   ],
-  exports: [HashingService],
+  exports: [HashingService, JwtModule, ConfigModule],
 })
 export class AuthModule {}

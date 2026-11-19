@@ -27,7 +27,7 @@ export class PessoasController {
   @UseGuards(AuthTokenGuard)
   @Get()
   findAll(@Req() req: Request) {
-    console.log(req[REQUEST_TOKEN_PAYLOAD_KEY].sub);
+    //console.log(req[REQUEST_TOKEN_PAYLOAD_KEY].sub);
     return this.pessoasService.findAll();
   }
 

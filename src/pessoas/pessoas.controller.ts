@@ -43,12 +43,15 @@ export class PessoasController {
     @Body() updatePessoaDto: UpdatePessoaDto,
     @TokenPayloadParam() tokenPayload: TokenPayloadDto,
   ) {
-    return this.pessoasService.update(+id, updatePessoaDto);
+    return this.pessoasService.update(+id, updatePessoaDto, tokenPayload);
   }
 
   @UseGuards(AuthTokenGuard)
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.pessoasService.remove(+id);
+  remove(
+    @Param('id') id: string,
+    @TokenPayloadParam() tokenPayload: TokenPayloadDto,
+  ) {
+    return this.pessoasService.remove(+id, tokenPayload);
   }
 }

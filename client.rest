@@ -1,6 +1,6 @@
 @baseUrl = http://localhost:3000
 
-@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE3LCJlbWFpbCI6Imx1aXpAZW1haWwuY29tIiwiaWF0IjoxNzk1MDk4MzY3LCJleHAiOjE3OTUxMDE5NjcsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMCIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMCJ9.GIEVB0pp-TpNSLzhHSkH04Bm-L5SMEfymPP0ub3sehE
+@authToken = {{authenticate.response.body.accessToken}}
 
 # RECADOS
 

@@ -1,12 +1,14 @@
 @baseUrl = http://localhost:3000
 
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE3LCJlbWFpbCI6Imx1aXpAZW1haWwuY29tIiwiaWF0IjoxNzk1MDk4MzY3LCJleHAiOjE3OTUxMDE5NjcsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMCIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMCJ9.GIEVB0pp-TpNSLzhHSkH04Bm-L5SMEfymPP0ub3sehE
+
 # RECADOS
 
 ### AppControllerGetHello
 GET {{baseUrl}}/recados/
 ?limit=10
 &offset=0
-Authorization: Bearer 123456
+Authorization: Bearer {{authToken}}
 
 ###
 GET {{baseUrl}}/recados/10
@@ -50,7 +52,7 @@ DELETE {{baseUrl}}/recados/2
 GET {{baseUrl}}/pessoas/
 ?limit=10
 &offset=0
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE3LCJlbWFpbCI6Imx1aXpAZW1haWwuY29tIiwiaWF0IjoxNzk1MDA0Mjg5LCJleHAiOjE3OTUwMDc4ODksImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMCIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMCJ9.x9jVady7tN4FJC5cQ121snKnUKgxNH7T0tM0B7rzecs
+Authorization: Bearer {{authToken}}
 
 ###
 GET {{baseUrl}}/pessoas/9
@@ -92,6 +94,7 @@ DELETE {{baseUrl}}/pessoas/12
 # AUTH
 
 ### lista todas as pessoas
+# @name authenticate
 POST {{baseUrl}}/auth/
 Content-Type: application/json
 

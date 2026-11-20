@@ -84,11 +84,11 @@ export class RecadosService {
     createRecadoDto: CreateRecadoDto,
     tokenPayload: TokenPayloadDto,
   ) {
-    const { deId, paraId } = createRecadoDto;
-
-    const de = await this.pessoaService.findOne(deId);
+    const { paraId } = createRecadoDto;
 
     const para = await this.pessoaService.findOne(paraId);
+
+    const de = await this.pessoaService.findOne(tokenPayload.sub);
 
     const novoRecado = {
       texto: createRecadoDto.texto,
@@ -104,9 +104,11 @@ export class RecadosService {
       ...recado,
       de: {
         id: recado.de.id,
+        nome: recado.de.name,
       },
       para: {
         id: recado.para.id,
+        nome: recado.para.name,
       },
     };
   }

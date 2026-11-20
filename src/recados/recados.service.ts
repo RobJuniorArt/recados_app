@@ -7,6 +7,7 @@ import { Repository } from 'typeorm';
 import { PessoasService } from 'src/pessoas/pessoas.service';
 import { paginationDto } from 'src/common/dto/pagination.dto';
 import { ConfigService } from '@nestjs/config';
+import { TokenPayloadDto } from 'src/auth/dto/token-payload.dto';
 
 @Injectable({ scope: Scope.DEFAULT }) // O PROVIDER EM QUESTAO É UM SINGLETON
 export class RecadosService {
@@ -79,7 +80,10 @@ export class RecadosService {
     this.throwNotFoundError();
   }
 
-  async create(createRecadoDto: CreateRecadoDto) {
+  async create(
+    createRecadoDto: CreateRecadoDto,
+    tokenPayload: TokenPayloadDto,
+  ) {
     const { deId, paraId } = createRecadoDto;
 
     const de = await this.pessoaService.findOne(deId);
@@ -107,7 +111,11 @@ export class RecadosService {
     };
   }
 
-  async update(id: number, updateRecadoDto: UpdateRecadoDto) {
+  async update(
+    id: number,
+    updateRecadoDto: UpdateRecadoDto,
+    tokenPayload: TokenPayloadDto,
+  ) {
     const recado = await this.findOne(id);
 
     if (!recado) return this.throwNotFoundError();
@@ -120,7 +128,7 @@ export class RecadosService {
     return recado;
   }
 
-  async remove(id: number) {
+  async remove(id: number, tokenPayload: TokenPayloadDto) {
     const recado = await this.recadoRepository.findOneBy({ id });
 
     if (!recado) return this.throwNotFoundError();

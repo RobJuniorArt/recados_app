@@ -69,17 +69,17 @@ Content-Type: application/json
  }
 
 ###
-PATCH {{baseUrl}}/pessoas/12/
+PATCH {{baseUrl}}/pessoas/17/
 Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
  {
-    "name": "Josival esteves",
-    "password": "654321"
+    "name": "Luiz de souza",
+    "password": "123456"
  }
 
 ###
-DELETE {{baseUrl}}/pessoas/12
+DELETE {{baseUrl}}/pessoas/13
 Authorization: Bearer {{authToken}}
 
 

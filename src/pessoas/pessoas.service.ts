@@ -106,9 +106,7 @@ export class PessoasService {
     }
 
     if (pessoa.id !== tokenPayLoad.sub) {
-      throw new ForbiddenException(
-        'Você não pode alterar dados de outro usuário.',
-      );
+      throw new ForbiddenException('Você não pode deletar outro usuário.');
     }
 
     return this.pessoaRepository.remove(pessoa);

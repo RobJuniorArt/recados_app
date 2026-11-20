@@ -1,4 +1,9 @@
-import { Injectable, NotFoundException, Scope } from '@nestjs/common';
+import {
+  ForbiddenException,
+  Injectable,
+  NotFoundException,
+  Scope,
+} from '@nestjs/common';
 import { Recado } from './entities/recado.entity';
 import { CreateRecadoDto } from './dto/create-recado.dto';
 import { UpdateRecadoDto } from './dto/update-recado.dto';
@@ -120,6 +125,12 @@ export class RecadosService {
   ) {
     const recado = await this.findOne(id);
 
+    if (recado?.de.id !== tokenPayload.sub) {
+      throw new ForbiddenException(
+        'Você não pode alterar um recado que não é seu.',
+      );
+    }
+
     if (!recado) return this.throwNotFoundError();
 
     recado.texto = updateRecadoDto?.texto ?? recado.texto;
@@ -132,6 +143,12 @@ export class RecadosService {
 
   async remove(id: number, tokenPayload: TokenPayloadDto) {
     const recado = await this.recadoRepository.findOneBy({ id });
+
+    if (recado?.de.id !== tokenPayload.sub) {
+      throw new ForbiddenException(
+        'Você não pode deletar um recado que não é seu.',
+      );
+    }
 
     if (!recado) return this.throwNotFoundError();
 

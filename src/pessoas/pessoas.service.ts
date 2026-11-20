@@ -1,5 +1,6 @@
 import {
   ConflictException,
+  ForbiddenException,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
@@ -77,12 +78,19 @@ export class PessoasService {
       dadosPessoa['passwordHash'] = passwordHash;
     }
     const pessoa = await this.pessoaRepository.preload({
+      //pre seleciona a pessoa na base de dados
       id,
       ...dadosPessoa,
     });
 
     if (!pessoa) {
       throw new NotFoundException('Pessoa não encontrada');
+    }
+
+    if (pessoa.id !== tokenPayLoad.sub) {
+      throw new ForbiddenException(
+        'Você não pode alterar dados de outro usuário.',
+      );
     }
 
     return this.pessoaRepository.save(pessoa);
@@ -95,6 +103,12 @@ export class PessoasService {
 
     if (!pessoa) {
       throw new NotFoundException('Pessoa não encontrada');
+    }
+
+    if (pessoa.id !== tokenPayLoad.sub) {
+      throw new ForbiddenException(
+        'Você não pode alterar dados de outro usuário.',
+      );
     }
 
     return this.pessoaRepository.remove(pessoa);

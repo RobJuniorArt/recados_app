@@ -25,7 +25,7 @@ Content-Type: application/json
  }
 
 ### atualiza um recado
-PATCH {{baseUrl}}/recados/4/
+PATCH {{baseUrl}}/recados/13/
 Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
@@ -35,7 +35,7 @@ Content-Type: application/json
  }
 
 ###
-DELETE {{baseUrl}}/recados/2
+DELETE {{baseUrl}}/recados/12
 Authorization: Bearer {{authToken}}
 
 

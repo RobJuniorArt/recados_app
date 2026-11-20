@@ -142,15 +142,17 @@ export class RecadosService {
   }
 
   async remove(id: number, tokenPayload: TokenPayloadDto) {
-    const recado = await this.recadoRepository.findOneBy({ id });
+    const recado = await this.findOne(id);
 
-    if (recado?.de.id !== tokenPayload.sub) {
+    if (!recado) {
+      throw new NotFoundException('Recado não encontrado.');
+    }
+
+    if (recado.de?.id !== tokenPayload.sub) {
       throw new ForbiddenException(
         'Você não pode deletar um recado que não é seu.',
       );
     }
-
-    if (!recado) return this.throwNotFoundError();
 
     return this.recadoRepository.remove(recado);
   }

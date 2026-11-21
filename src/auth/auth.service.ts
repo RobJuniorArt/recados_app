@@ -61,6 +61,7 @@ export class AuthService {
     return { accessToken };
   }
 
-  refreshTokens(RefreshTokenDto: RefreshTokenDto){}
-
+  refreshTokens(RefreshTokenDto: RefreshTokenDto) {
+    return true;
+  }
 }

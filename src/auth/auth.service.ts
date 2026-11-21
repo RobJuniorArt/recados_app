@@ -45,16 +45,20 @@ export class AuthService {
       throw new UnauthorizedException('Usuário ou senha inválidos');
     }
 
-    const accessToken = await this.signJwtAsync(pessoa);
+    const accessToken = await this.signJwtAsync<Partial<Pessoa>>(
+      pessoa!.id,
+      this.jwtConfiguration.jwtTtl,
+      { email: pessoa?.email },
+    );
 
     return { accessToken };
   }
 
-  private async signJwtAsync(pessoa: Pessoa | null) {
+  private async signJwtAsync<T>(sub: Number, expiresIn: Number, payload: T) {
     return await this.jwtService.signAsync(
       {
-        sub: pessoa?.id,
-        email: pessoa?.email,
+        sub,
+        ...payload,
       },
       {
         audience: this.jwtConfiguration.audience,

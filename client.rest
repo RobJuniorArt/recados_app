@@ -2,6 +2,8 @@
 
 @authToken = {{authenticate.response.body.accessToken}}
 
+@refreshToken = {{authenticate.response.body.refreshToken}}
+
 # RECADOS
 
 ### AppControllerGetHello
@@ -108,4 +110,13 @@ Content-Type: application/json
 {
    "email": "luiz@email.com",
    "password": "123456"
+}
+
+### Re-Autenticaçao
+# @name reAuthenticate
+POST {{baseUrl}}/auth/refresh/
+Content-Type: application/json
+
+{
+   "refreshToken": "{{refreshToken}}"
 }

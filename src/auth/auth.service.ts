@@ -56,10 +56,10 @@ export class AuthService {
       this.jwtConfiguration.jwtRefreshTtl,
     );
 
-    return { accessToken };
+    return { accessToken, refreshToken };
   }
 
-  private async signJwtAsync<T>(sub: Number, expiresIn: Number, payload?: T) {
+  private async signJwtAsync<T>(sub: number, expiresIn: number, payload?: T) {
     return await this.jwtService.signAsync(
       {
         sub,
@@ -69,7 +69,7 @@ export class AuthService {
         audience: this.jwtConfiguration.audience,
         issuer: this.jwtConfiguration.issuer,
         secret: this.jwtConfiguration.secret,
-        expiresIn: this.jwtConfiguration.jwtTtl,
+        expiresIn,
       },
     );
   }

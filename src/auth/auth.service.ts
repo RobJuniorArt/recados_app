@@ -45,7 +45,13 @@ export class AuthService {
       throw new UnauthorizedException('Usuário ou senha inválidos');
     }
 
-    const accessToken = await this.jwtService.signAsync(
+    const accessToken = await this.signJwtAsync(pessoa);
+
+    return { accessToken };
+  }
+
+  private async signJwtAsync(pessoa: Pessoa | null) {
+    return await this.jwtService.signAsync(
       {
         sub: pessoa?.id,
         email: pessoa?.email,
@@ -57,8 +63,6 @@ export class AuthService {
         expiresIn: this.jwtConfiguration.jwtTtl,
       },
     );
-
-    return { accessToken };
   }
 
   refreshTokens(RefreshTokenDto: RefreshTokenDto) {

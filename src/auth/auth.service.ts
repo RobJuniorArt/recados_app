@@ -51,10 +51,15 @@ export class AuthService {
       { email: pessoa?.email },
     );
 
+    const refreshToken = await this.signJwtAsync(
+      pessoa!.id,
+      this.jwtConfiguration.jwtRefreshTtl,
+    );
+
     return { accessToken };
   }
 
-  private async signJwtAsync<T>(sub: Number, expiresIn: Number, payload: T) {
+  private async signJwtAsync<T>(sub: Number, expiresIn: Number, payload?: T) {
     return await this.jwtService.signAsync(
       {
         sub,

@@ -7,6 +7,7 @@ import { HashingService } from './hashing/hashing.service';
 import jwtConfig from './config/jwt.config';
 import type { ConfigType } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
+import { RefreshTokenDto } from './dto/refresh-token.dto';
 
 @Injectable()
 export class AuthService {
@@ -59,4 +60,7 @@ export class AuthService {
 
     return { accessToken };
   }
+
+  refreshTokens(RefreshTokenDto: RefreshTokenDto){}
+
 }

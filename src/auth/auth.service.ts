@@ -22,29 +22,28 @@ export class AuthService {
     console.log(jwtConfiguration);
   }
 
-  async login(LoginDto: LoginDto) {
-    let passwordIsValid = false;
-    let throwError = true;
-
+  async login(loginDto: LoginDto) {
     const pessoa = await this.pessoaRepository.findOneBy({
-      email: LoginDto.email,
+      email: loginDto.email,
     });
 
-    if (pessoa) {
-      passwordIsValid = await this.hashingService.compare(
-        LoginDto.password,
-        pessoa.passwordHash,
-      );
+    if (!pessoa) {
+      throw new UnauthorizedException('Pessoa não existe.');
     }
 
-    if (passwordIsValid) {
-      throwError = false;
+    const passwordIsValid = await this.hashingService.compare(
+      loginDto.password,
+      pessoa.passwordHash,
+    );
+
+    if (!passwordIsValid) {
+      throw new UnauthorizedException('Senha inválida!');
     }
 
-    if (throwError) {
-      throw new UnauthorizedException('Usuário ou senha inválidos');
-    }
+    return this.createTokens(pessoa);
+  }
 
+  private async createTokens(pessoa: Pessoa) {
     const accessToken = await this.signJwtAsync<Partial<Pessoa>>(
       pessoa!.id,
       this.jwtConfiguration.jwtTtl,
@@ -75,6 +74,10 @@ export class AuthService {
   }
 
   refreshTokens(RefreshTokenDto: RefreshTokenDto) {
-    return true;
+    try {
+      const {sub} = await this.jwtService.verifyAsync()
+    } catch (e) {
+      throw new UnauthorizedException(e.message);
+    }
   }
 }

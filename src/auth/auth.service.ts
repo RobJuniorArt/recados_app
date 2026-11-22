@@ -73,11 +73,23 @@ export class AuthService {
     );
   }
 
-  refreshTokens(RefreshTokenDto: RefreshTokenDto) {
+  async refreshTokens(RefreshTokenDto: RefreshTokenDto) {
     try {
-      const {sub} = await this.jwtService.verifyAsync()
+      const { sub } = await this.jwtService.verifyAsync(
+        RefreshTokenDto.refreshToken,
+        this.jwtConfiguration,
+      );
+      const pessoa = await this.pessoaRepository.findOneBy({
+        id: sub,
+      });
+      if (!pessoa) {
+        throw new Error('Pessoa não encontrada.');
+      }
+      return this.createTokens(pessoa);
     } catch (e) {
-      throw new UnauthorizedException(e.message);
+      throw new UnauthorizedException(
+        e instanceof Error ? e.message : 'Invalid refresh token.',
+      );
     }
   }
 }

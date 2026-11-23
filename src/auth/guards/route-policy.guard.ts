@@ -1,9 +1,11 @@
-import { CanActivate, ExecutionContext } from '@nestjs/common';
+import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
+import { Reflector } from '@nestjs/core';
 
+@Injectable()
 export class RoutePolicyGuard implements CanActivate {
-  constructor() {}
+  constructor(private readonly reflector: Reflector) {}
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    console.log(context.getHandler());
+    console.log(this.reflector.get('chave', context.getHandler()));
     return true;
   }
 }

@@ -18,6 +18,7 @@ import { AuthTokenGuard } from 'src/auth/guards/auth-token.guard';
 import { TokenPayloadParam } from 'src/auth/params/token-payload.param';
 import { TokenPayloadDto } from 'src/auth/dto/token-payload.dto';
 import { RoutePolicyGuard } from 'src/auth/guards/route-policy.guard';
+import { ROUTE_POLICY_KEY } from 'src/auth/auth.constants';
 
 @UseGuards(RoutePolicyGuard)
 @Controller('recados')
@@ -26,7 +27,7 @@ export class RecadosController {
 
   //encontrar todos os recados
   @Get()
-  @SetMetadata('chave', 'valor')
+  @SetMetadata(ROUTE_POLICY_KEY, 'findAllRecados')
   async findAll(@Query() paginationDto: paginationDto) {
     const recados = await this.recadosService.findAll(paginationDto);
     return recados;

@@ -7,6 +7,7 @@ import {
   Patch,
   Post,
   Query,
+  SetMetadata,
   UseGuards,
 } from '@nestjs/common';
 import { RecadosService } from './recados.service';
@@ -23,6 +24,7 @@ export class RecadosController {
 
   //encontrar todos os recados
   @Get()
+  @SetMetadata('chave', 'valor')
   async findAll(@Query() paginationDto: paginationDto) {
     const recados = await this.recadosService.findAll(paginationDto);
     return recados;

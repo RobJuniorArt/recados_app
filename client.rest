@@ -68,9 +68,10 @@ POST {{baseUrl}}/pessoas/
 Content-Type: application/json
 
  {
-    "name": "Luiz",
-    "email": "luiz@email.com",
-    "password": "123456"
+    "name": "Joaozinho",
+    "email": "joaozinho2@email.com",
+    "password": "123456",
+    "routePolicies": ["createRecado","findOneRecado"]
  }
 
 ###

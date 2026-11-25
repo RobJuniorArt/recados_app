@@ -32,6 +32,8 @@ export class RoutePolicyGuard implements CanActivate {
       );
     }
 
+    const { pessoa } = tokenPayload;
+
     return true;
   }
 }

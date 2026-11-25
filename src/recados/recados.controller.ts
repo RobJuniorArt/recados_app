@@ -21,6 +21,7 @@ import { RoutePolicyGuard } from 'src/auth/guards/route-policy.guard';
 import { ROUTE_POLICY_KEY } from 'src/auth/auth.constants';
 import { SetRoutePolicy } from 'src/auth/decorators/set-route-policy.decorator';
 import { RoutePolicies } from 'src/auth/enum/route-policies.enum';
+import { AuthAndPolicyGuard } from 'src/auth/guards/auth-and-policy.guard';
 
 @Controller('recados')
 export class RecadosController {
@@ -40,7 +41,7 @@ export class RecadosController {
   }
 
   @SetRoutePolicy(RoutePolicies.createRecado)
-  @UseGuards(AuthTokenGuard, RoutePolicyGuard)
+  @UseGuards(AuthAndPolicyGuard)
   @Post()
   create(
     @Body() createRecadoDto: CreateRecadoDto,

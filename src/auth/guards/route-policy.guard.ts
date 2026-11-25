@@ -7,6 +7,7 @@ import {
 import { Reflector } from '@nestjs/core';
 import { REQUEST_TOKEN_PAYLOAD_KEY, ROUTE_POLICY_KEY } from '../auth.constants';
 import { RoutePolicies } from '../enum/route-policies.enum';
+import { Pessoa } from 'src/pessoas/entities/pessoa.entity';
 
 @Injectable()
 export class RoutePolicyGuard implements CanActivate {
@@ -32,7 +33,13 @@ export class RoutePolicyGuard implements CanActivate {
       );
     }
 
-    const { pessoa } = tokenPayload;
+    const { pessoa }: { pessoa: Pessoa } = tokenPayload;
+
+    if (pessoa!.routePolicies.includes(routePolicyRequired)) {
+      throw new UnauthorizedException(
+        `Rota reque permissao ${routePolicyRequired}. Usuário não logado.`,
+      );
+    }
 
     return true;
   }

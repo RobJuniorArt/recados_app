@@ -22,7 +22,6 @@ import { ROUTE_POLICY_KEY } from 'src/auth/auth.constants';
 import { SetRoutePolicy } from 'src/auth/decorators/set-route-policy.decorator';
 import { RoutePolicies } from 'src/auth/enum/route-policies.enum';
 
-@UseGuards(RoutePolicyGuard)
 @Controller('recados')
 export class RecadosController {
   constructor(private readonly recadosService: RecadosService) {}
@@ -40,8 +39,8 @@ export class RecadosController {
     return this.recadosService.findOne(+id);
   }
 
-  @UseGuards(AuthTokenGuard)
   @SetRoutePolicy(RoutePolicies.createRecado)
+  @UseGuards(AuthTokenGuard, RoutePolicyGuard)
   @Post()
   create(
     @Body() createRecadoDto: CreateRecadoDto,

@@ -29,7 +29,7 @@ export class PessoasService {
         name: createPessoaDto.name,
         passwordHash,
         email: createPessoaDto.email,
-        routePolicies: createPessoaDto.routePolicies,
+        // routePolicies: createPessoaDto.routePolicies,
       };
 
       const novaPessoa = this.pessoaRepository.create(dadosPessoa);

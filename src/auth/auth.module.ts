@@ -8,8 +8,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import jwtConfig from './config/jwt.config';
 import { JwtModule } from '@nestjs/jwt';
-import { RoutePolicyGuard } from './guards/route-policy.guard';
-import { AuthTokenGuard } from './guards/auth-token.guard';
 
 @Global()
 @Module({
@@ -25,16 +23,7 @@ import { AuthTokenGuard } from './guards/auth-token.guard';
       useClass: BcryptService,
     },
     AuthService,
-    AuthTokenGuard,
-    RoutePolicyGuard,
   ],
-  exports: [
-    HashingService,
-    JwtModule,
-    ConfigModule,
-    TypeOrmModule,
-    AuthTokenGuard,
-    RoutePolicyGuard,
-  ],
+  exports: [HashingService, JwtModule, ConfigModule, TypeOrmModule],
 })
 export class AuthModule {}

@@ -135,10 +135,6 @@ Content-Type: application/json
 # UPLOAD
 
 ### FOTO DO USUÁRIO
-POST {{baseUrl}}/auth/
-Content-Type: application/json
+POST {{baseUrl}}/pessoas/upload-picture/
+Content-Type: multipart/form-data
 
-{
-   "email": "luiz@email.com",
-   "password": "123456"
-}

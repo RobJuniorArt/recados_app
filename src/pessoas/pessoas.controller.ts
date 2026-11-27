@@ -54,4 +54,10 @@ export class PessoasController {
   ) {
     return this.pessoasService.remove(+id, tokenPayload);
   }
+
+  @UseGuards(AuthTokenGuard)
+  @Post('upload-picture')
+  uploadPicture(@TokenPayloadParam() tokenPayload: TokenPayloadDto) {
+    return true;
+  }
 }

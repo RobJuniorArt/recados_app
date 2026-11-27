@@ -136,6 +136,7 @@ Content-Type: application/json
 
 ### FOTO DO USUÁRIO
 POST {{baseUrl}}/pessoas/upload-picture/
+Authorization: Bearer {{authToken}}
 Content-Type: multipart/form-data; boundary=----BoundaryDelimitadorHttp
 
 ------BoundaryDelimitadorHttp

@@ -121,3 +121,24 @@ Content-Type: application/json
 {
    "refreshToken": "{{refreshToken}}"
 }
+
+
+
+
+
+#################################################################################################
+
+
+
+
+
+# UPLOAD
+
+### FOTO DO USUÁRIO
+POST {{baseUrl}}/auth/
+Content-Type: application/json
+
+{
+   "email": "luiz@email.com",
+   "password": "123456"
+}

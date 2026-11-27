@@ -136,5 +136,12 @@ Content-Type: application/json
 
 ### FOTO DO USUÁRIO
 POST {{baseUrl}}/pessoas/upload-picture/
-Content-Type: multipart/form-data
+Content-Type: multipart/form-data; boundary=----BoundaryDelimitadorHttp
+
+------BoundaryDelimitadorHttp
+Content-Disposition: form-data; name="file"; filename="abc.jpg"
+Content-Type: image/jpeg
+
+< ./dev/images/abc.jpg
+------BoundaryDelimitadorHttp--
 

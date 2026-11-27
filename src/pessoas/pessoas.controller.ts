@@ -66,6 +66,12 @@ export class PessoasController {
     @UploadedFile() file: Express.Multer.File,
     @TokenPayloadParam() tokenPayload: TokenPayloadDto,
   ) {
-    return true;
+    return {
+      fieldname: file.fieldname,
+      originalname: file.originalname,
+      mimetype: file.mimetype,
+      buffer: {},
+      size: file.size,
+    };
   }
 }
